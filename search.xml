@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[test for comment function]]></title>
+    <url>%2F2018%2F10%2F14%2Ftest-for-comment-function%2F</url>
+    <content type="text"><![CDATA[Just to test the function of commenting.]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Linux(Ubuntu 64)下安装Git并配置连接Github]]></title>
     <url>%2F2018%2F10%2F13%2FLinux-Ubuntu-64-%E4%B8%8B%E5%AE%89%E8%A3%85Git%E5%B9%B6%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5Github%2F</url>
     <content type="text"><![CDATA[安装使用命令 apt-get 安装：1$ sudo apt-get install git 配置配置用户名及邮箱：12$ git config --global user.name &quot;your-name&quot;$ git config --global user.email &quot;your-email&quot; 连接1. 生成 SSH Keys : 1$ ssh-keygen -t rsa -C &quot;your-email&quot; 系统会提示 key 的保存位置，默认即可。此外，还有密码设置，若不设置，则有安全问题，若设置，则每次连接 Github 时都要输入密码，比较麻烦，这里我们选择默认。 2. 复制 SSH Key 内容，并添加到 Github 中： 首先，使用 cat 命令，并复制 SSH Key内容：1$ cat ~/.ssh/id_rsa.pub 然后，登录 GitHub-&gt;Settings-&gt;SSH and GPG keys-&gt;New SSH Key，任取名字，粘贴保存即可。 3. 测试连接是否成功： 输入以下命令：1$ ssh -T git@github.com 然后提示是否继续连接，输入 yes 即可：1Are you sure you want to continue connecting (yes/no)? yes 最后提示连接成功：1Hi your-name! You&apos;ve successfully authenticated, but GitHub does not provide shell access. 然后就大功告成啦！]]></content>
