@@ -303,10 +303,10 @@
         
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-                6 tags in total
+                4 tags in total
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/Blog/" style="font-size: 12px; color: #ccc">Blog</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Github/" style="font-size: 30px; color: #111">Github</a> <a href="/tags/Hexo/" style="font-size: 21px; color: #6f6f6f">Hexo</a> <a href="/tags/Linux/" style="font-size: 12px; color: #ccc">Linux</a> <a href="/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a>
+              <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Github/" style="font-size: 12px; color: #ccc">Github</a> <a href="/tags/Linux/" style="font-size: 12px; color: #ccc">Linux</a> <a href="/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a>
             </div>
           </div>
         
@@ -327,6 +327,8 @@
 
           
 
+  
+    <div id="gitalk-container"></div>
   
 
 
@@ -370,7 +372,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -381,7 +383,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -392,7 +394,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -402,6 +404,28 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sunshineyin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yinganmin6837@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/9bc0830bd802e5afd2474b3c4d5a7ddb" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -490,6 +514,8 @@
   
 
 
+  
+
 
 
 
@@ -528,6 +554,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -594,6 +625,29 @@
 
 
 
+
+
+
+    
+
+          
+      <link rel='stylesheet' href="https://yiyeti.cc/usr/themes/veryse/css/gitalk.css">
+      <script src="https://yiyeti.cc/usr/themes/veryse/css/gitalk.min.js"></script>
+      <script type="text/javascript">
+          var gitalk = new Gitalk({
+            clientID:  '', 
+            clientSecret: '',
+            id: window.location.pathname,
+            repo: '', 
+            owner: '', 
+            admin: 'sunshineYin', 
+            distractionFreeMode: 'true',
+          })
+          gitalk.render('gitalk-container')
+      </script>
+    
+
+  
 
 
   

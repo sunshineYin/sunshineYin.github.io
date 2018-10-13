@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Github,Linux,Git,ssh," />
+  <meta name="keywords" content="Linux,Git,Github,ssh," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="安装使用命令 apt-get 安装：">
-<meta name="keywords" content="Github,Linux,Git,ssh">
+<meta name="keywords" content="Linux,Git,Github,ssh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux(Ubuntu 64)下安装Git并配置连接Github">
 <meta property="og:url" content="http://sunshineyin.github.io/2018/10/13/Linux-Ubuntu-64-下安装Git并配置连接Github/index.html">
@@ -409,18 +409,60 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赞赏是最好的支持与鼓励！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="images/wechatpay.jpg" alt="Ganmin Yin WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Ganmin Yin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://sunshineyin.github.io/2018/10/13/Linux-Ubuntu-64-下安装Git并配置连接Github/" title="Linux(Ubuntu 64)下安装Git并配置连接Github">http://sunshineyin.github.io/2018/10/13/Linux-Ubuntu-64-下安装Git并配置连接Github/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://sunshineyin.github.io/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Github/" rel="tag"># Github</a>
-          
             <a href="/tags/Linux/" rel="tag"># Linux</a>
           
             <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/Github/" rel="tag"># Github</a>
           
             <a href="/tags/ssh/" rel="tag"># ssh</a>
           
@@ -431,22 +473,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/10/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -472,6 +498,8 @@
 
           
 
+  
+    <div id="gitalk-container"></div>
   
 
 
@@ -524,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -535,7 +563,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -546,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -556,6 +584,28 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sunshineyin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yinganmin6837@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/9bc0830bd802e5afd2474b3c4d5a7ddb" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -660,6 +710,8 @@
   
 
 
+  
+
 
 
 
@@ -698,6 +750,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -764,6 +821,29 @@
 
 
 
+
+
+
+    
+
+          
+      <link rel='stylesheet' href="https://yiyeti.cc/usr/themes/veryse/css/gitalk.css">
+      <script src="https://yiyeti.cc/usr/themes/veryse/css/gitalk.min.js"></script>
+      <script type="text/javascript">
+          var gitalk = new Gitalk({
+            clientID:  '', 
+            clientSecret: '',
+            id: window.location.pathname,
+            repo: '', 
+            owner: '', 
+            admin: 'sunshineYin', 
+            distractionFreeMode: 'true',
+          })
+          gitalk.render('gitalk-container')
+      </script>
+    
+
+  
 
 
   
