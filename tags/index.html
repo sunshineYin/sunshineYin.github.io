@@ -629,9 +629,9 @@
 
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  
+
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="js/src/md5.min.js"></script>
+  
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: '73678f4f190630d9c290',
@@ -639,7 +639,7 @@
           repo: 'sunshineyin.github.io',
           owner: 'sunshineyin',
           admin: ['sunshineyin'],
-          id: md5(location.pathname),
+          id: decodeURI(location.pathname),
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')           
