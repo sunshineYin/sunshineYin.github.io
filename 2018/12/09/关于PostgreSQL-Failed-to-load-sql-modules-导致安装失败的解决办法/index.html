@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="sunshineyin&#39;s blog">
 <meta property="og:description" content="PostgresSQL 安装失败的解决办法（Win10 环境下）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/public/images/postgresql.PNG">
-<meta property="og:updated_time" content="2019-04-16T03:10:32.886Z">
+<meta property="og:image" content="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/images/postgresql.PNG">
+<meta property="og:updated_time" content="2019-04-16T03:30:44.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于PostgreSQL &#39;Failed to load sql modules&#39; 导致安装失败的解决办法">
 <meta name="twitter:description" content="PostgresSQL 安装失败的解决办法（Win10 环境下）">
-<meta name="twitter:image" content="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/public/images/postgresql.PNG">
+<meta name="twitter:image" content="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/images/postgresql.PNG">
 
 
 
@@ -397,7 +397,7 @@
 <p>然后，没办法，感觉是系统不兼容的原因，又下了其他的低版本（然鹅，那时的下载速度令人惊讶的慢，不到200M的安装包下了踏马几个小时，真是要自闭了。。），下完其他版本后，安装之后发现还是一样的问题，这样捣鼓了快一个晚上后，我突然间意识到在我安装完毕的时候，它给我报了下面 2 个信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to load sql modules into the database cluster</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error running post install step. Installation may not complete correctly. Error reading</span><br><span class="line">D:/PostgreSQL/10/postgresql.conf</span><br></pre></td></tr></table></figure>
 <p>嗯哼？难道是它压根就没下完整的缘故吗？？带着疑问，上网搜了一下，终于有结果了。。</p>
-<p><img src="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/public/images/postgresql.PNG" alt="sunshineyin"></p>
+<p><img src="https://github.com/sunshineYin/sunshineyin.github.io/blob/master/images/postgresql.PNG" alt="sunshineyin"></p>
 <p>照着上面的意思，步骤如下：</p>
 <ol>
 <li>找到 PostgreSQL 的安装目录，通过 uninstall-postgresql.exe 卸载完全，进入 data 文件夹，将其中所有文件/文件夹删除。</li>
