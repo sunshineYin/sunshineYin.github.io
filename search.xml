@@ -4,6 +4,9 @@
     <title><![CDATA[test for about]]></title>
     <url>%2F2019%2F04%2F18%2Ftest-for-about%2F</url>
     <content type="text"><![CDATA[Just test for “about”.]]></content>
+      <categories>
+        <category>about</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[在初次使用arcpy过程中遇到问题的总结]]></title>
