@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2020.09.28 重新测试博客]]></title>
+    <url>%2F2020%2F09%2F28%2F2020-09-28-%E9%87%8D%E6%96%B0%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[在初次使用arcpy过程中遇到问题的总结]]></title>
     <url>%2F2019%2F04%2F15%2F%E5%9C%A8%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8arcpy%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[在初次使用arcpy过程中遇到问题的总结 前几天在做实验室任务时，需要使用到arcpy，由于是初次使用，过程中也是遇到了很多问题，感觉还是很有必要记录一下，避免以后重蹈覆辙吧 :) arcgis自带python安装如何pip： 在做任务时，写的python脚本里面既要用到arcpy，又要用到requests库来抓取数据，但是arcpy是闭源的，所以只能用arcgis自带的python了，但第一步安装requests库的时候就出问题了，就是发现arcgis自带的python并没有pip！！！（我的arcgis是10.3版本的，后来在实验室的电脑上arcgis 10.4上试的时候发现又有，感觉应该是版本原因，因为也下过几次python了，当时如有安装pip这个选项的话，我一定是勾选了的，且按下不提） 这里的话，还算比较幸运，找到了一篇博客，介绍还比较详尽。 在系统环境中同时存在py2和py3时，如何使用pip： 好了，现在安装好pip了，但是由于我事先电脑里就已经装过python3.7了，所以事实上环境中是存在两个版本的pip的，又查了一下，发现也是有了结果。 pip安装库时出现问题： 其实，在安装好pip之后，在cmd下面使用pip安装外部库总是有问题，问题提示应该是我之前更换过镜像源的缘故，由于不想影响到原有的py3，所以就去这个网站，找到对应版本的.whl文件，pip install一下就好了，在遇到网络、版本等问题时，也可以用这种方式，具体可以参考这篇博客。 arcpy关于layer的注意点： 关于arcpy内部众多的方法，比如arcpy.SelectLayerByAttribute_management等函数，其实和arcgis desktop的各种工具的使用并无多大区别，在桌面版里面尝试用一下，再在arcgis python里面尝试一两下就应该会了，但是中间倒是遇到了一个问题，感觉还是需要注意一下。 就是，在执行完这些方法时传入的参数必须得是图层，而不是文件路径什么的，所以在调用那些方法之前，还得先将文件路径对应的地理信息转换为图层，比如arcpy.MakeFeatureLayer_management(path, &quot;layer&quot;)。 此外，倘若是在做循环的话，那该图层必定会多次赋值使用，但是arcpy是不能这样同时处理的，所以必须得先删去再重新创建，删去图层可调用arcpy.Delete_management(layer)。 原本还有其他一些要注意的点，但查看arcgis官网也就知道了，这里也就不多说了。 python的with open与flush、close： 在做任务的过程中，由于抓取数据量比较大，在做调试的过程中，发现总是程序执行到某一步了，但写入文件的数据总是还停留在很早之前的某一步的结果上，这倒让人匪夷所思了。 后来才意识到，这是因为在python里面（or所有语言？or所有操作系统？）文件流操作是存在缓存机制的，write方法并不直接将数据写入文件中，而是先写入缓冲区中，正常情况下等缓冲区满以后，操作系统再统一将数据写入文件。 flush方法是用来刷新缓冲区的，调用该函数后，操作系统立刻将缓冲区中的数据写入文件中，并清空缓冲区。 close方法的机制则是先调用flush方法以刷新缓冲区，之后关闭文件，这样即使缓冲区未满，也能保证数据完整性。 当进程意外退出或正常结束但未执行close方法时，缓冲区中的数据将丢失掉。 因此，在我调试过程中总是提前终止程序，且程序中那时并没有close语句，所以调试结束时并没有刷新缓冲区，这部分数据也就丢失掉了。 所以，我们只需要在程序里经常性的flush一下，最后记得close文件就行了。 但是还有更好的方法，即python极力推荐的with open功能，with open功能本质上是一个try... finally...结构，这样就能做到当程序出现IO错误时，都能够执行close方法使文件不被损坏、数据不被丢失。 所以啊，一定要多多用with open呀！！！]]></content>
@@ -36,10 +41,10 @@
         <category>操作</category>
       </categories>
       <tags>
+        <tag>Linux</tag>
         <tag>Telnet</tag>
         <tag>SMTP</tag>
         <tag>POP3</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
