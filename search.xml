@@ -21,7 +21,7 @@
     <url>%2F2018%2F12%2F09%2F%E5%85%B3%E4%BA%8EPostgreSQL-Failed-to-load-sql-modules-%E5%AF%BC%E8%87%B4%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%2F</url>
     <content type="text"><![CDATA[PostgresSQL 安装失败的解决办法（Win10 环境下） 这两天实验室学姐给我的任务中需要用到 PostgreSQL，然后在安装完 PostgreSQL 后，打开 psql 后连接本地服务器报错（在 pgAdmin 中一样没用）：12OperationalError: could not connect to server: Connection refused Is the server running on host &quot;localhost&quot; (127.0.0.1) and accepting TCP/IP connections on port 5432? 查了很久，看到有说更改 postgresql.conf 和 pg_hba.conf 文件的，但发现没用，甚至 data 文件夹下都没有 pg_hba.conf 这个文件。。 然后，没办法，感觉是系统不兼容的原因，又下了其他的低版本（然鹅，那时的下载速度令人惊讶的慢，不到200M的安装包下了踏马几个小时，真是要自闭了。。），下完其他版本后，安装之后发现还是一样的问题，这样捣鼓了快一个晚上后，我突然间意识到在我安装完毕的时候，它给我报了下面 2 个信息：1Failed to load sql modules into the database cluster 12Error running post install step. Installation may not complete correctly. Error readingD:/PostgreSQL/10/postgresql.conf 嗯哼？难道是它压根就没下完整的缘故吗？？带着疑问，上网搜了一下，终于有结果了。。 照着上面的意思，步骤如下： 找到 PostgreSQL 的安装目录，通过 uninstall-postgresql.exe 卸载完全，进入 data 文件夹，将其中所有文件/文件夹删除。 创建一个名为 postgres 的 windows 本地用户，可参考（https://www.ithome.com/html/win10/237491.htm ）设置该用户的密码（后面要用到），并设置为管理员。然后找到你要安装 PostgreSQL 的文件夹，右键（属性-安全-编辑-添加）,然后将 postgres 用户添加至“组或用户名”中，并将其设置为完全控制的权限。 重启电脑，仍用原先账户登录，打开 cmd 命令行，输入 runas/user:postgres cmd.exe，之后会需要你输入之前设置的密码。 等一小会儿，弹出来一个新窗口，切换至下载的 exe 所在的目录（不是安装目录）下面，运行 postgresql.exe。 然后是安装过程，注意将安装目录设置为之前添加 postgres 用户权限的文件夹即可。 然后，搞了一整个晚上之后，问题终于解决了（论时间是怎么浪费的啊啊啊！！！）。希望对你能有所帮助吧，少耗些无谓的时间多看些书、敲几行代码才是王道~]]></content>
       <categories>
-        <category>操作</category>
+        <category>笔记</category>
       </categories>
       <tags>
         <tag>PostgreSQL</tag>
@@ -33,13 +33,13 @@
     <url>%2F2018%2F10%2F22%2F%E5%88%A9%E7%94%A8telnet%EF%BC%8C%E9%80%9A%E8%BF%87SMTP-POP3%E5%8D%8F%E8%AE%AE%E6%94%B6%E5%8F%91%E9%82%AE%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[利用telnet，通过SMTP/POP3协议收发邮件（Ubuntu 64） 利用BASE64对用户名及密码加密12$ perl -MMIME::Base64 -e &apos;print encode_base64(&quot;your-username&quot;);&apos;$ perl -MMIME::Base64 -e &apos;print encode_base64(&quot;your-password&quot;);&apos; 记录加密的内容，并在邮箱设置中开启SMTP/POP3服务。 利用SMTP协议发邮件(以163邮箱为例,’#’后为需要自行输入的内容)1234567891011121314151617181920212223242526272829303132333435$ telnet smtp.163.com 25 # telnet连接163的SMTP服务器，登录25端口Trying 220.181.12.11...Connected to smtp.163.com.Escape character is &apos;^]&apos;.220 163.com Anti-spam GT for Coremail System (163com[20141201])EHLO smtp.163.com # 握手 :)250-mail250-PIPELINING250-AUTH LOGIN PLAIN250-AUTH=LOGIN PLAIN250 8BITMIME AUTH LOGIN # 开始认证登录334 dXNlcm5hbWU6 your-username # 用户名经BASE64加密后的字串334 UGFzc3dvcmQ6 your-password # 密码经BASE64加密后的字串235 Authentication successful MAIL FROM:&lt;your-username@163.com&gt; # 邮件发送方250 Mail OKRCPT TO:&lt;your-recipient&apos;s email address&gt; # 邮件的接收方，若有多个收件人，则重复这一语句多次250 Mail OKDATA # 邮件内容354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt; # 终止符为回车换行，输入&apos;.&apos;，再回车换行FROM: your-username@163.com # 可以伪造TO: your-recipient&apos;s email addressSUBJECT: test by telnet/smtp # 邮件标题test, just a test. # 邮件正文. # 结束符250 Mail OK queued as smtp7,C8CowABnbF5bSslbctn8Eg--.4083S2 1539918910 # 返回250 表示发送成功。NOOP # 空语句，不执行任何操作，一般用来保持和服务器连接，不要掉线250 OKQUIT # 退出221 ByeConnection closed by foreign host. 利用POP3协议收邮件(以163邮箱为例,’#’后为需要自行输入的内容)12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061$ telnet pop.163.com 110 # telnet连接163的POP3服务器，登录110端口Trying 121.195.178.52...Connected to pop3.163.idns.yeah.netEscape character is &apos;^]&apos;.+OK Welcome to coremail Mail Pop3 Server (163coms[b62aaa251425b4be4eaec4ab4744cf47s])USER your-username # 用户名，不用加密+OK core mailPASS your-password # 密码,不用加密+OK 120 message(s) [6121451 byte(s)]STAT # 查看邮箱状态+OK 120 6121451LIST # 邮件列表+OK 120 61214511 24682 219453 331364 20715 33646 189067 31368 24764.................TOP 120 0 # 查看指定邮件的邮件头，0表示查看整个邮件头，其它正整数表示限制返回多少行。+OK core mailReceived: from smtp.163.com (unknown [58.252.70.158])by smtp5 (Coremail) with SMTP id wKjREDrA9gIfFqlEjCnRAg==.29062S4;Mon, 22 Oct 2018 21:07:18 +0800 (CST)FROM: your-username # 发件人信息，可以伪造TO: your-recipient&apos;s email addressSUBJECT: test by telnet/smtp # 邮件主题Message-Id: &lt;44A91687.0E6F6C.07562&gt;Date: Mon, 22 Oct 2018 21:07:19 +0800 (CST)Sender: your-username@163.com # 这里是真正的发送人，不可伪造.RETR 120 # 获取指定邮件+OK 354 octetsReceived: from smtp.63.com (unknown [58.252.70.158])by smtp5 (Coremail) with SMTP id wKjREDrA9gIfFqlEjCnRAg==.29062S4;Mon, 22 Oct 2018 21:07:18 +0800 (CST)FROM : your-username@163.com # 可以伪造TO: your-recipient&apos;s email addressSUBJECT: test by telnet/smtpMessage-Id: &lt;44A91687.0E6F6C.07562&gt;Date: Mon, 22 Oct 2018 21:07:19 +0800 (CST)Sender: your-username@163.com # 不可伪造test, just a test..DELE 120 # 删除第120封邮件+OK core mailSTAT # 查看邮箱状态+OK 119 27676315QUIT # 退出+OK core mailConnection closed by foreign host.]]></content>
       <categories>
-        <category>操作</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Telnet</tag>
         <tag>SMTP</tag>
         <tag>POP3</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -47,7 +47,7 @@
     <url>%2F2018%2F10%2F13%2FLinux-Ubuntu-64-%E4%B8%8B%E5%AE%89%E8%A3%85Git%E5%B9%B6%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5Github%2F</url>
     <content type="text"><![CDATA[Linux(Ubuntu 64)下安装Git并配置连接Github 安装使用命令 apt-get 安装：1$ sudo apt-get install git 配置配置用户名及邮箱：12$ git config --global user.name &quot;your-name&quot;$ git config --global user.email &quot;your-email&quot; 连接1. 生成 SSH Keys : 1$ ssh-keygen -t rsa -C &quot;your-email&quot; 系统会提示 key 的保存位置，默认即可。此外，还有密码设置，若不设置，则有安全问题，若设置，则每次连接 Github 时都要输入密码，比较麻烦，这里我们选择默认。 2. 复制 SSH Key 内容，并添加到 Github 中： 首先，使用 cat 命令，并复制 SSH Key内容：1$ cat ~/.ssh/id_rsa.pub 然后，登录 GitHub-&gt;Settings-&gt;SSH and GPG keys-&gt;New SSH Key，任取名字，粘贴保存即可。 3. 测试连接是否成功： 输入以下命令：1$ ssh -T git@github.com 然后提示是否继续连接，输入 yes 即可：1Are you sure you want to continue connecting (yes/no)? yes 最后提示连接成功：1Hi your-name! You&apos;ve successfully authenticated, but GitHub does not provide shell access. 然后就大功告成啦！]]></content>
       <categories>
-        <category>操作</category>
+        <category>笔记</category>
       </categories>
       <tags>
         <tag>Linux</tag>
